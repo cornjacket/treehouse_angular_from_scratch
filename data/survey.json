@@ -1,0 +1,28 @@
+{
+  "title": "Treehouse Survey",
+  "questions": [
+    {
+      "id": 1,
+      "conditional": false,
+      "questionText": "What is your favorite language?",
+      "options": [
+        "JavaScript",
+        "Ruby",
+        "Go",
+        "Other"
+      ]
+    },
+
+    {
+      "id": 2,
+      "conditional": false,
+      "questionText": "Do you prefer cats or dogs?",
+      "options": [
+        "Cats",
+        "Dogs",
+        "Both are awesome",
+        "Can't stand either"
+      ]
+    }
+  ]
+}

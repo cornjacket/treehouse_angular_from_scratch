@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="treehouseCourse">
+  <head>
+    <title>Angular.js</title>
+    <script src="js/angular.js"></script>
+    <script src="js/lodash.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-controller="stageCtrl">
+
+    <div class="main" ng-switch="step">
+      {{step}}
+      <div ng-switch-when="1" ng-controller="userStepCtrl">
+
+        <form name="demographics" >              
+          Gender<br/>
+          <label>        
+          <input type="radio" name="gender" ng-model="user.gender" value="Male">Male
+          </label><br/>
+          <label>
+          <input type="radio" name="gender" ng-model="user.gender" value="Female">Female
+          </label><br/>
+          <tt>gender = {{user.gender | json}}</tt><br/>
+          <br/>Age Range:
+          <select name="AgeRange" ng-model="user.ageRange">
+          <option value="<10">&lt;10</option>
+          <option value="10-19">10-19</option>
+          <option value="20-29">20-29</option>
+          <option value="30-39">30-39</option>
+          <option value="40-49">40-49</option>
+          <option value="50+">50+</option>
+          </select>
+          <br/>
+          <br/><button ng-click="advance()" type="button">Next step</button>
+        </form>
+        <pre ng-bind="user | json"></pre>
+      </div>
+      <div ng-switch-when="2" ng-controller="surveyStepCtrl">
+        <h4>{{survey.title}}</h4>
+        <p>Awesome, now for a few quick questions:</p>
+        <form name="surveyQuestions" class="fields">
+          <div class="question" ng-repeat="question in survey.questions">
+            <p class="question">
+              {{question.id}}{{question.questionText}}
+            </p>
+            <label ng-repeat="option in question.options">
+              <input type="radio" ng-model="user.surveyAnswers[question.id]" ng-value="option">
+              {{option}}
+            </label>          
+          </div>
+          <br/>
+          <button ng-click="advance()" ng-disabled="surveyQuestions.$invalid">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div ng-switch-when="3" ng-controller="resultsStepCtrl">
+        <div ng-repeat="(index,answer) in user.surveyAnswers">
+          <p>Question {{index}}: {{getQuestion(index).questionText}}</p>
+          <p>Answer: {{answer}}</p>
+        </div>
+        <p>Great. thanks. Here are the results so far:</p>
+        <div ng-repeat="result in surveyResults">
+          <div bar-char="result"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </body>
+</html>

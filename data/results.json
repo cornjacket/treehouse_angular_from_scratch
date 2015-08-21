@@ -1,0 +1,14 @@
+{
+  "1": {
+    "JavaScript": 40,
+    "Ruby": 25,
+    "Go": 15,
+    "Other": 20
+  },
+  "2": {
+    "Cats": 5,
+    "Dogs": 20,
+    "Both are awesome": 15,
+    "Can't stand either": 2
+  }
+}
